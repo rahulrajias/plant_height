@@ -1,27 +1,27 @@
 import numpy as np
 import random
 import itertools
-# import Tkinter
+import pandas as pd
 import matplotlib.pyplot as plt
+import csv
 
-plot3=[118,160,135,142,128,156,155,173,150,167,167,163,152,145,114,133,136,163,157,161]
-pop_avg=np.average(plot3)
-# print(type(pop_avg))
-pop_std=np.std(plot3)
-# print(type(pop_std))
-print("pop_avg: %s and pop_std: %s",(pop_avg, pop_std))
-# print("pop_std: ",pop_std)
-sample=19
-sampled_data= list(itertools.combinations(plot3,sample))
-# print(sampled_data)
-avg_list=[]
-for i in sampled_data:
-    avg_list.append(np.average(i))
-print(avg_list)
-# plt.hist(avg_list,bins=50, color='r', histtype="step")
-# plt.show()
+csv_data= pd.read_csv("Corn_Height.csv")
+print(csv_data)
+data_stats=csv_data.describe()
+print(data_stats)
+data_avg=csv_data.mean()
+data_std=csv_data.std()
+sample=5
+# all_possible_samples = list(itertools.combinations(csv_data['1'],sample))
+all_possible_samples = list(itertools.combinations(csv_data['1'],sample))
+print(all_possible_samples)
+print(type(all_possible_samples))
+plt1_sam=pd.DataFrame.from_records(all_possible_samples)
+plt1_avg_sam = plt1_sam.mean(axis=1)
+print("......................")
+print(type(plt1_avg_sam))
 
-sample_overall_var=np.var(avg_list)
-print("Overall variance: ",sample_overall_var)
-SD=np.std(avg_list)
-print("Std of the avg_samples: ",SD)
+avg_sam_5=pd.DataFrame()
+print(type(avg_sam_5))
+avg_sam_5['plot_1'] = plt1_avg_sam
+print(avg_sam_5)

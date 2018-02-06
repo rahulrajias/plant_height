@@ -50,3 +50,6 @@ print(df)
 #
 #     unique=sorted(i)
 # print(sorted_result)
+
+df=pd.DataFrame([1,2,3],[4,5,6])
+print(df)
